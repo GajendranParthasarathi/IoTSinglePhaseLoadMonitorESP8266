@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>IIoT</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+ 
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+             
+
+             <!-- Sidebar Start -->
+             <div class="sidebar pe-4 pb-3">
+                <nav class="navbar bg-secondary navbar-dark">
+                    <a href="index.html" class="navbar-brand mx-4 mb-3">
+                        <h3 class="text-primary"></i>Smart Hall</h3>
+                    </a>
+                    <div class="navbar-nav w-100">
+                        <a href="index.html" class="nav-item nav-link " id="dashboard-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+    
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="regaIllamHall2" aria-expanded="true"><i class="fa fa-laptop me-2"></i>RegaIllamHall-1</a>
+                            <ul class="dropdown-menu bg-transparent border-0 show" aria-labelledby="regaIllamHall1">
+                                <li><a href="blank.html?hall=RegaIllamHall1&load=1" class="dropdown-item">Load - 1</a></li>
+                                <li><a href="blank.html?hall=RegaIllamHall1&load=2" class="dropdown-item">Load - 2</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="regaIllamHall2" aria-expanded="true"><i class="fa fa-laptop me-2"></i>RegaIllamHall-2</a>
+                            <ul class="dropdown-menu bg-transparent border-0 show" aria-labelledby="regaIllamHall2">
+                                <li><a href="blank.html?hall=RegaIllamHall2&load=1" class="dropdown-item">Load - 1</a></li>
+                                <li><a href="blank.html?hall=RegaIllamHall2&load=2" class="dropdown-item">Load - 2</a></li>
+                                <li><a href="blank.html?hall=RegaIllamHall2&load=3" class="dropdown-item">Load - 3</a></li>
+                                <li><a href="blank.html?hall=RegaIllamHall2&load=4" class="dropdown-item">Load - 4</a></li>
+                                <li><a href="blank.html?hall=RegaIllamHall2&load=5" class="dropdown-item">Load - 5</a></li>
+                            </ul>
+                        </div> 
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="regaIllam" aria-expanded="true"><i class="fa fa-laptop me-2"></i>RegaIllam</a>
+                            <ul class="dropdown-menu bg-transparent border-0 show" aria-labelledby="regaIllam">
+                                <li><a href="blank.html?hall=RegaIllam&load=1" class="dropdown-item">Test Node</a></li>
+                            </ul>
+                        </div>    
+                    </div>
+                </nav>
+            </div>
+<!-- Sidebar End -->
+
+
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+              
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>        
+                <div class="navbar-nav align-items-center ms-auto">
+                    
+                   
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="height: 80px;">
+                        
+                            <div class="ms-3" style="width: 100%;">
+                                <p class="mb-2"></p>
+                                
+                             <h6 class="mb-0">     <div id="clock" style="color: #16c8eb ;text-align: center;"></div>
+                                                  <div id="date" style="color: #16c8eb ;text-align: center;"></div>
+                                                
+                                        
+                                            <script>
+                                                function startTime() {
+                                            var today = new Date();
+                                            var hr = today.getHours();
+                                            var min = today.getMinutes();
+                                            var sec = today.getSeconds();
+                                            ap = (hr < 12) ? "<span>AM</span>" : "<span>PM</span>";
+                                            hr = (hr == 0) ? 12 : hr;
+                                            hr = (hr > 12) ? hr - 12 : hr;
+                                            //Add a zero in front of numbers<10
+                                            hr = checkTime(hr);
+                                            min = checkTime(min);
+                                            sec = checkTime(sec);
+                                            document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec + " " + ap;
+                                            
+                                            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                                            var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                                            var curWeekDay = days[today.getDay()];
+                                            var curDay = today.getDate();
+                                            var curMonth = months[today.getMonth()];
+                                            var curYear = today.getFullYear();
+                                            var date = curWeekDay+", "+curDay+" "+curMonth+" "+curYear;
+                                            document.getElementById("date").innerHTML = date;
+                                            
+                                            var time = setTimeout(function(){ startTime() }, 500);
+                                        }
+                                        function checkTime(i) {
+                                            if (i < 10) {
+                                                i = "0" + i;
+                                            }
+                                            return i;
+                                        }
+                                        startTime();
+                                        
+                                        
+                                       
+                                            </script></h6> 
+                            </div>
+                     
+                    </div>
+               
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">Hey! Gajendran P</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+            <!-- Blank Start -->
+ 
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <img src="img/voltage.png" alt="Voltage Icon" style="height: 34px; width: 34px;">
+                            <div class="ms-3">
+                                <p class="mb-2" >Voltage</p>
+                                <h6 class="mb-0" id="live_voltage">0 V</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <img src="img/current.png" alt="Current Icon" style="height: 34px; width: 34px;">
+                            <div class="ms-3">
+                                <p class="mb-2">Current</p>
+                                <h6 class="mb-0" id="live_current">0 A</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <img src="img/power.png" alt="Power Icon" style="height: 34px; width: 34px;">
+                            <div class="ms-3">
+                                <p class="mb-2">Power</p>
+                                <h6 class="mb-0" id="live_power">0 W</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <img src="img/pf.png" alt="Power Factor Icon" style="height: 34px; width: 34px;">
+                            <div class="ms-3">
+                                <p class="mb-2">PF</p>
+                                <h6 class="mb-0" id="live_pf">0</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <img src="img/frequency.png" alt="Frequency Icon" style="height: 34px; width: 34px;">
+                            <div class="ms-3">
+                                <p class="mb-2">Frequency</p>
+                                <h6 class="mb-0" id="live_frequency">0 Hz</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <img src="img/energy.png" alt="Energy Icon" style="height: 34px; width: 34px;">
+                            <div class="ms-3">
+                                <p class="mb-2">Energy</p>
+                                <h6 class="mb-0" id="live_energy">0 kWh</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+                <div class="container-fluid pt-4 px-4">
+                   <div class="row g-4">
+                       <div class="col-sm-6 col-xl-3" >
+                           <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="height: 80px;">
+                               <h6>From</h6>
+                                 <input type="datetime-local" name="startDate" id="startDate" class="form-control" value=startDate placeholder=startDate required style="color: rgb(0, 0, 0);width: 80%;font-size: 13px;background-color: #11CAF0"> 
+                           </div>
+                       </div>
+                       <div class="col-sm-6 col-xl-3">
+                           <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="height: 80px;">
+                               
+                               <h6>To</h6>
+                               <input type="datetime-local" name="endDate" id="endDate" class="form-control" value=endDate placeholder=endDate required style="color: rgb(0, 0, 0);width: 80%;font-size: 13px;background-color: #11CAF0">
+                           </div>
+                       </div>
+                       <div class="col-sm-6 col-xl-3">
+                           <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="height: 80px;">
+                           
+                               <div class="ms-1" style="width: 100%;">
+                                   <p class="mb-2"></p>
+                                  <div class="row">
+                                      <div class="col-6">
+                                   <h6 class="mb-0"><button class="btn btn-info" type="submit" style="color: rgb(0, 0, 0);width: 100%;font-size: 13px;background-color: #11CAF0">Filter <span style="padding-left: 10px;"><i class="bi bi-filter-circle"></i></span></button></h6>
+                                      </div>
+                                      <div class="col-6">
+                                   <h6 class="mb-0"><button class="btn btn-info" id="button_live" style="color: rgb(0, 0, 0);width: 100%;font-size: 13px;">Live <span style="padding-left: 10px;"><i class="bi bi-camera-reels"></i></span></button></h6>
+                                      </div>
+                                  </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4" style="height: 80px;">
+                        
+                            <div class="ms-3" style="width: 100%;">
+                                <p class="mb-2"></p>
+                                
+                                <h6 class="mb-0"><button class="btn btn-info" id="export-btn"  type="submit" style="color: rgb(0, 0, 0);width: 100%;font-size: 13px;background-color: #11CAF0">Export <span style="padding-left: 50px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-arrow-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M7.646 10.854a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 9.293V5.5a.5.5 0 0 0-1 0v3.793L6.354 8.146a.5.5 0 1 0-.708.708z"/>
+                                        <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
+                                      </svg>
+                                </span></button></h6>
+                            </div>
+                        </div>
+                    </div>
+                   
+                   </div>
+               </div>
+              
+               <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+                                <!-- Buttons Container -->
+                                <div class="btn-group d-flex flex-wrap justify-content-between w-100">
+                                    <button class="btn btn-info flex-fill m-1" id="btn-all" type="submit">All</button>
+                                    <button class="btn btn-info flex-fill m-1"  id="btn-voltage" >
+                                        Voltage 
+                                        <span class="ms-2"><img src="img/voltage.png" alt="" style="height: 24px; width: 24px;"></span>
+                                    </button>
+                                    <button class="btn btn-info flex-fill m-1" id="btn-current"  >
+                                        Current 
+                                        <span class="ms-2"><img src="img/current.png" alt="" style="height: 24px; width: 24px;"></span>
+                                    </button>
+                                    <button class="btn btn-info flex-fill m-1" id="btn-power">
+                                        Power 
+                                        <span class="ms-2"><img src="img/power.png" alt="" style="height: 24px; width: 24px;"></span>
+                                    </button>
+                                    <button class="btn btn-info flex-fill m-1" id="btn-frequency">
+                                        Frequency 
+                                        <span class="ms-2"><img src="img/frequency.png" alt="" style="height: 24px; width: 24px;"></span>
+                                    </button>
+                                    <button class="btn btn-info flex-fill m-1" id="btn-pf">
+                                        Power Factor 
+                                        <span class="ms-2"><img src="img/pf.png" alt="" style="height: 24px; width: 24px;"></span>
+                                    </button>
+                                    <button class="btn btn-info flex-fill m-1" id="btn-energy">
+                                        Energy 
+                                        <span class="ms-2"><img src="img/energy.png" alt="" style="height: 24px; width: 24px;"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Blank End -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Table</h6>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">Date_Time</th>
+                                    <th scope="col">Voltage</th>
+                                    <th scope="col">Current</th>
+                                    <th scope="col">Power</th>
+                                    <th scope="col">Frequency</th>
+                                    <th scope="col">Power Factor</th>
+                                    <th scope="col">Energy</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table_body">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Content End -->
+<script>
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hall = urlParams.get('hall');
+    const load = urlParams.get('load');
+    let chart = null;
+    let activeButtonId = null; // Track the currently active button
+
+    console.log('Hall:', hall);
+    console.log('Load:', load);
+
+// Using vanilla JavaScript
+
+    const button = document.getElementById('btn-all');
+    const live = document.getElementById('button_live');
+
+// Check if button exists to avoid errors
+if (button && live) {
+    // Remove the 'btn-info' class and add the 'btn-success' class
+    button.classList.remove('btn-info');
+    live.classList.remove('btn-info');
+    button.classList.add('btn-success');
+    live.classList.add('btn-success');
+}
+
+
+    function fetchData() {
+        console.log('Fetching data with hall:', hall, 'and load:', load);
+        $.ajax({
+            url: 'fetch_data.php',
+            type: 'GET',
+            data: { hall: hall, load: load },
+            success: function(response, textStatus, jqXHR) {
+                console.log('AJAX success status:', jqXHR.status);
+                try {
+                    const data = typeof response === 'string' ? JSON.parse(response) : response;
+                    console.log('Fetched data:', data);
+
+                    updateChart(data.chart);  // Pass only chart data
+                    updateTable(data.table);  // Pass only table data
+                } catch (error) {
+                    console.error('Error processing data:', error);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    }
+
+    function updateChart(data) {
+        if (!chart) {
+            var ctx2 = $("#myChart").get(0).getContext("2d");
+            chart = new Chart(ctx2, {
+                type: "line",
+                data: {
+                    labels: data.timestamps,
+                     datasets: [
+                            {
+                                label: "Voltage",
+                                fill: true,
+                                lineTension: 0.1,
+                                backgroundColor: "rgba(105, 0, 132, .2)",
+                                borderColor: "rgb(105, 0, 132)",
+                                borderCapStyle: 'butt',
+                                borderDash: [],
+                                borderDashOffset: 0.0,
+                                borderJoinStyle: 'miter',
+                                pointBorderColor: "rgba(105, 0, 132, .7)",
+                                pointBackgroundColor: "#fff",
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "rgba(105, 0, 132, .7)",
+                                pointHoverBorderColor: "rgba(105, 0, 132, .7)",
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHitRadius: 10,
+                                data: data.voltages,
+                            },
+                            {
+                                label: "Current",
+                                fill: true,
+                                lineTension: 0.1,
+                                backgroundColor: "rgba(0, 137, 132, .2)",
+                                borderColor: "rgb(0, 137, 132)",
+                                borderCapStyle: 'butt',
+                                borderDash: [],
+                                borderDashOffset: 0.0,
+                                borderJoinStyle: 'miter',
+                                pointBorderColor: "rgba(0, 137, 132, .7)",
+                                pointBackgroundColor: "#fff",
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "rgba(0, 137, 132, .7)",
+                                pointHoverBorderColor: "rgba(0, 137, 132, .7)",
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHitRadius: 10,
+                                data: data.currents,
+                            },
+                            {
+                                label: "Power",
+                                fill: true,
+                                lineTension: 0.1,
+                                backgroundColor: "rgba(255, 99, 71, 0.2)",
+                                borderColor: "rgb(255, 99, 71)",
+                                borderCapStyle: 'butt',
+                                borderDash: [],
+                                borderDashOffset: 0.0,
+                                borderJoinStyle: 'miter',
+                                pointBorderColor: "rgba(255, 99, 71, .7)",
+                                pointBackgroundColor: "#fff",
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "rgba(255, 99, 71, .7)",
+                                pointHoverBorderColor: "rgba(255, 99, 71, .7)",
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHitRadius: 10,
+                                data: data.powers,
+                            },
+                            {
+                                label: "Frequency",
+                                fill: true,
+                                lineTension: 0.1,
+                                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                                borderColor: "rgb(54, 162, 235)",
+                                borderCapStyle: 'butt',
+                                borderDash: [],
+                                borderDashOffset: 0.0,
+                                borderJoinStyle: 'miter',
+                                pointBorderColor: "rgba(54, 162, 235, .7)",
+                                pointBackgroundColor: "#fff",
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "rgba(54, 162, 235, .7)",
+                                pointHoverBorderColor: "rgba(54, 162, 235, .7)",
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHitRadius: 10,
+                                data: data.frequencies,
+                            },
+                            {
+                                label: "Power Factor",
+                                fill: true,
+                                lineTension: 0.1,
+                                backgroundColor: "rgba(255, 159, 64, 0.2)",
+                                borderColor: "rgb(255, 159, 64)",
+                                borderCapStyle: 'butt',
+                                borderDash: [],
+                                borderDashOffset: 0.0,
+                                borderJoinStyle: 'miter',
+                                pointBorderColor: "rgba(255, 159, 64, .7)",
+                                pointBackgroundColor: "#fff",
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "rgba(255, 159, 64, .7)",
+                                pointHoverBorderColor: "rgba(255, 159, 64, .7)",
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHitRadius: 10,
+                                data: data.powerFactors,
+                            },
+                            {
+                                label: "Energy",
+                                fill: true,
+                                lineTension: 0.1,
+                                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                                borderColor: "rgb(75, 192, 192)",
+                                borderCapStyle: 'butt',
+                                borderDash: [],
+                                borderDashOffset: 0.0,
+                                borderJoinStyle: 'miter',
+                                pointBorderColor: "rgba(75, 192, 192, .7)",
+                                pointBackgroundColor: "#fff",
+                                pointBorderWidth: 1,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "rgba(75, 192, 192, .7)",
+                                pointHoverBorderColor: "rgba(75, 192, 192, .7)",
+                                pointHoverBorderWidth: 2,
+                                pointRadius: 5,
+                                pointHitRadius: 10,
+                                data: data.energies,
+                            }
+                        ]
+                },
+                options: {
+                    responsive: true,
+                    showLines: true,
+                    animation: { duration: 0 }
+                }
+            });
+        } else {
+            // Update existing chart
+            chart.data.labels = data.timestamps;
+            chart.data.datasets.forEach((dataset, index) => {
+                dataset.data = data[Object.keys(data)[index + 1]];
+            });
+            chart.update();
+        }
+    }
+
+    function updateTable(tableData) {
+        console.log('Updating table with data:', tableData);
+        const tableBody = $('#table_body');
+        tableBody.empty();
+        tableData.timestamps.forEach((timestamp, index) => {
+             // Update live values
+            document.getElementById('live_voltage').innerText = tableData.voltages[0];
+            document.getElementById('live_current').innerText = tableData.currents[0];
+            document.getElementById('live_power').innerText = tableData.powers[0];
+            document.getElementById('live_frequency').innerText = tableData.frequencies[0];
+            document.getElementById('live_pf').innerText = tableData.powerFactors[0];
+            document.getElementById('live_energy').innerText = tableData.energies[0];
+            const row = `
+                <tr>
+                    <td>${timestamp}</td>
+                    <td>${tableData.voltages[index]}</td>
+                    <td>${tableData.currents[index]}</td>
+                    <td>${tableData.powers[index]}</td>
+                    <td>${tableData.frequencies[index]}</td>
+                    <td>${tableData.powerFactors[index]}</td>
+                    <td>${tableData.energies[index]}</td>
+                </tr>
+            `;
+            tableBody.append(row);
+        });
+    }
+
+    function filterData() {
+        const startDate = $('#startDate').val();
+        const endDate = $('#endDate').val();
+        console.log('Filtering data with startDate:', startDate, 'and endDate:', endDate);
+        $.ajax({
+            url: 'filter.php',
+            type: 'POST',
+            data: { hall: hall, load: load, startDate: startDate, endDate: endDate },
+            success: function(response, textStatus, jqXHR) {
+                console.log('AJAX filter success status:', jqXHR.status);
+                try {
+                    const data = typeof response === 'string' ? JSON.parse(response) : response;
+                    console.log('Filtered data:', data);
+                    updateChart(data.chart);  // Pass only chart data
+                    updateTable(data.table);  // Pass only table data
+                } catch (error) {
+                    console.error('Error processing filtered data:', error);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX error:', status, error);
+            }
+        });
+    }
+
+    function setButtonState(id, isActive) {
+        const button = $(`#${id}`);
+        if (isActive) {
+            button.removeClass('btn-info').addClass('btn-success');
+        } else {
+            button.removeClass('btn-success').addClass('btn-info');
+        }
+    }
+
+    $('#export-btn').click(function() {
+        const startDate = $('#startDate').val();
+        const endDate = $('#endDate').val();
+        console.log('Exporting data with startDate:', startDate, 'and endDate:', endDate);
+        window.location.href = `export.php?hall=${hall}&load=${load}&startDate=${startDate}&endDate=${endDate}`;
+    });
+
+    $('#btn-all').click(function() {
+        console.log('Showing all datasets');
+        if (chart) {
+            chart.data.datasets.forEach(dataset => {
+                dataset.hidden = false; // Show all datasets
+            });
+            chart.update();
+        }
+        // Update button states
+        setButtonState('btn-all', true);
+        $('button[id^="btn-"]').not('#btn-all').each(function() {
+            setButtonState($(this).attr('id'), false);
+        });
+        activeButtonId = 'btn-all'; // Track active button
+    });
+
+    $('button[id^="btn-"]').not('#btn-all').click(function() {
+        const label = $(this).text().trim();
+        const btnId = $(this).attr('id');
+        console.log('Button clicked with label:', label);
+
+        if (chart) {
+            // Hide all datasets except the one related to the clicked button
+            chart.data.datasets.forEach(dataset => {
+                if (dataset.label === label) {
+                    dataset.hidden = false;
+                } else {
+                    dataset.hidden = true;
+                }
+            });
+            chart.update();
+
+            // Update button states
+            setButtonState('btn-all', false); // Reset 'All' button state
+            $('button[id^="btn-"]').not('#btn-all').each(function() {
+                setButtonState($(this).attr('id'), $(this).attr('id') === btnId);
+            });
+
+            activeButtonId = btnId; // Track the currently active button
+        }
+    });
+
+    fetchData();
+    setInterval(fetchData, 1000); // Refresh every second
+});
+
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var dropdowns = document.querySelectorAll('.dropdown-toggle');
+
+        dropdowns.forEach(function (dropdown) {
+            dropdown.addEventListener('click', function () {
+                var dropdownMenu = this.nextElementSibling;
+                var isActive = dropdownMenu.classList.contains('show');
+
+                // Hide all dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(function (menu) {
+                    menu.classList.remove('show');
+                });
+
+                // Show clicked dropdown if it wasn't already shown
+                if (!isActive) {
+                    dropdownMenu.classList.add('show');
+                }
+            });
+        });
+    });
+</script>
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="js/main.js"></script>
+   
+</body>
+
+</html>
