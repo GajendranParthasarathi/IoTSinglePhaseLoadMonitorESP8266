@@ -38,3 +38,38 @@ The Wi-Fi SSID and password are defined using `#define`, allowing the code to co
 
 ### Summary
 The primary function of this code is to connect to a Wi-Fi network, continuously read electrical parameters from five PZEM-004T modules, format these readings into a POST request, and send them to a specified server URL for data logging or processing. Each loop iteration allows for a data transmission every 7 seconds, which helps in monitoring energy consumption.
+
+
+This PHP script is designed to collect data from an ESP32 device via a POST request and insert that data into a MySQL database. Below is a clear, concise explanation of the different parts of the code:
+
+### Explanation of the Code
+
+1. **Database Connection Parameters**:
+   - The script sets up database connection parameters including the server name (`localhost`), username (`pgcresearch_gaja`), password (`Gaja@123`), and database name (`pgcresearch_newiot`).
+
+2. **Creating Database Connection**:
+   - It creates a new MySQLi object (`$conn`) to connect to the MySQL database using the provided parameters.
+
+3. **Checking the Connection**:
+   - The script checks if the connection was successful. If there is an error, it terminates the execution (`die`) and outputs an error message.
+
+4. **Handling Incoming Data**:
+   - The script checks if the request method is POST (`$_SERVER["REQUEST_METHOD"] == "POST"`), which indicates that data has been sent from the ESP32.
+   - It retrieves various measurements (voltage, current, power, frequency, power factor, and energy) for five channels (1 through 5) from the POST data. Each measurement is stored in a variable, such as `$Voltage1post`, `$Current1post`, etc.
+
+5. **Inserting Data into the Database**:
+   - The script constructs an SQL `INSERT` statement to add the collected data into a table called `RegaIllamHall2`. The values for each measurement are included in the SQL command.
+   - After constructing the SQL query, it executes the query using `$conn->query($sql)`.
+
+6. **Feedback on Insertion**:
+   - If the data is inserted successfully, it echoes a success message. If there is an error during insertion, it outputs the SQL error message.
+
+7. **Closing the Database Connection**:
+   - Finally, the script closes the database connection using `$conn->close()` to free up resources.
+
+### Summary
+- This PHP script receives measurement data from an ESP32 device via an HTTP POST request, connects to a MySQL database, stores the data in a specified table, and provides feedback on whether the data insertion was successful or if an error occurred. 
+
+### Security Consideration
+- **SQL Injection Risk**: The current implementation directly uses user input in SQL queries, which can lead to SQL injection attacks. It is recommended to use prepared statements to mitigate this risk.Avoid hardcoding sensitive data like usernames and passwords in production environments; instead, consider using environment variables or secure configuration files.
+
