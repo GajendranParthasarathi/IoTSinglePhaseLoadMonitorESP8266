@@ -162,6 +162,8 @@ delay(1000);
             "&Voltage5=" + VoltagePost5 + "&Current5=" + CurrentPost5 +"&Power5=" + PowerPost5+"&Frequency5=" + FrequencyPost5+"&PowerFactor5=" + PowerFactorPost5+"&Energy5=" + EnergyPost5;
  //http.begin(client,"http://pgcresearch.co.in/PG/KCE/StaffRoom_InsertDB.php");
  http.begin(client, "http://pgcresearch.co.in/PG/RengaIllam/InsertDBRegaIllamHall2.php");
+ //http.begin(client, "http://pgcresearch.co.in/PG/RengaIllam/InsertDB.php");
+ //http.begin(client, "http://pgcresearch.co.in/PG/RengaIllam/InsertDBRegaIllam.php");
 // http.begin(client,"http://pgcresearch.co.in/PG/KCE/InsertDB.php");
  //http.begin(client,"http://pgcresearch.pavantech.in/KCEStaffRoom/InsertDB.php");
    
